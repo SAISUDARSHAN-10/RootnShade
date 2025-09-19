@@ -23,7 +23,7 @@ export default function Sidebar({ collapsed, mobileOpen }) {
   return (
     <aside
       className={`
-        fixed md:static top-[64px] left-0 h-[calc(100%-64px)] 
+        fixed md:static top-[64px] left-0 h-full md:h-[calc(100vh-64px)] md:top-[64px]
         bg-white border-r shadow-sm flex flex-col transition-all duration-300 z-40
         ${collapsed ? "w-16" : "w-64"} 
         ${mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}

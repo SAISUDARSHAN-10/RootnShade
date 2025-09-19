@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Sidebar from "./components/Sidebar";
 import Navbar from "./components/Navbar";
@@ -14,20 +14,54 @@ import Signup from "./pages/Signup";
 import History from "./pages/History";
 
 export default function App() {
-  const [collapsed, setCollapsed] = useState(false);   // desktop collapse
-  const [mobileOpen, setMobileOpen] = useState(false); // mobile open/close
+  const [collapsed, setCollapsed] = useState(true);   // start collapsed on desktop
+  const [mobileOpen, setMobileOpen] = useState(false); // start closed on mobile
+
+  const sidebarRef = useRef(null);
+  const navbarRef = useRef(null);
+
+  useEffect(() => {
+  function handleClickOutside(event) {
+    if (
+      sidebarRef.current &&
+      !sidebarRef.current.contains(event.target) &&
+      navbarRef.current &&
+      !navbarRef.current.contains(event.target)
+    ) {
+      if (mobileOpen) setMobileOpen(false);
+      if (!collapsed) setCollapsed(true);
+    }
+  }
+
+  function handleScroll() {
+    // Close sidebar on mobile if user scrolls outside
+    if (mobileOpen) setMobileOpen(false);
+  }
+
+  document.addEventListener("mousedown", handleClickOutside);
+  window.addEventListener("scroll", handleScroll, true); // use capture so it catches body scroll
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+    window.removeEventListener("scroll", handleScroll, true);
+  };
+}, [mobileOpen, collapsed]);
 
   return (
     <div className="h-screen bg-gray-50">
       {/* Navbar */}
-      <Navbar
-        onToggleSidebar={() => setCollapsed((prev) => !prev)}
-        onToggleMobile={() => setMobileOpen((prev) => !prev)}
-      />
+      <div ref={navbarRef}>
+        <Navbar
+          onToggleSidebar={() => setCollapsed((prev) => !prev)}
+          onToggleMobile={() => setMobileOpen((prev) => !prev)}
+        />
+      </div>
 
       {/* Sidebar + Main Content */}
       <div className="flex h-full pt-[64px]">
-        <Sidebar collapsed={collapsed} mobileOpen={mobileOpen} />
+        <div ref={sidebarRef}>
+          <Sidebar collapsed={collapsed} mobileOpen={mobileOpen} />
+        </div>
 
         <main className="flex-1 p-6 overflow-y-auto">
           <Routes>
@@ -46,4 +80,4 @@ export default function App() {
       </div>
     </div>
   );
-} 
+}
