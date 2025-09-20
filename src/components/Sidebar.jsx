@@ -6,12 +6,15 @@ import {
   CreditCard,
   RotateCcw,
   Clock,
+  ShoppingCart,
+  ShoppingBag,
 } from "lucide-react";
 
 const links = [
   { name: "Home", path: "/", icon: <Home size={20} /> },
   { name: "Orders", path: "/orders", icon: <Package size={20} /> },
   { name: "Offers", path: "/offers", icon: <Gift size={20} /> },
+  { name: "Products", path: "/products", icon: <ShoppingBag size={20} /> }, // ✅ added
   { name: "Credit Details", path: "/credit-details", icon: <CreditCard size={20} /> },
   { name: "Payment History", path: "/history", icon: <Clock size={20} /> },
   { name: "Reorder", path: "/reorder", icon: <RotateCcw size={20} /> },
@@ -23,7 +26,7 @@ export default function Sidebar({ collapsed, mobileOpen }) {
   return (
     <aside
       className={`
-        fixed md:static top-[64px] left-0 h-full md:h-[calc(100vh-64px)] md:top-[64px]
+        fixed md:static top-[64px] left-0 h-full md:h-[calc(100vh-64px)]
         bg-white border-r shadow-sm flex flex-col transition-all duration-300 z-40
         ${collapsed ? "w-16" : "w-64"} 
         ${mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}

@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Search,
   Package,
@@ -9,6 +10,16 @@ import {
 } from "lucide-react";
 
 export default function Home() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchTerm.trim() !== "") {
+      navigate(`/products?q=${encodeURIComponent(searchTerm)}`);
+    }
+  };
+
   return (
     <div className="space-y-8">
       {/* Welcome Header */}
@@ -29,14 +40,19 @@ export default function Home() {
       </div>
 
       {/* Search Bar */}
-      <div className="bg-white border rounded-lg shadow-sm p-4 flex items-center gap-2">
+      <form
+        onSubmit={handleSearch}
+        className="bg-white border rounded-lg shadow-sm p-4 flex items-center gap-2"
+      >
         <Search className="text-gray-400" size={18} />
         <input
           type="text"
           placeholder="Search products..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
           className="w-full outline-none text-sm text-gray-700"
         />
-      </div>
+      </form>
 
       {/* Quick Links */}
       <section>
