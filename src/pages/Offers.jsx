@@ -1,73 +1,75 @@
+// src/pages/offers.jsx
 import { Tag, Calendar, ShoppingCart, Info, Gift } from "lucide-react";
 
-export default function Offers() {
-  const offers = [
-    {
-      id: 1,
-      category: "Oral Care",
-      expires: true,
-      discount: "16.67% OFF",
-      title: "Dabur Bulk Purchase Offer",
-      desc: "Buy 6 bundles of ₹10 Dabur paste → Get 1 free",
-      minOrder: "₹600",
-      maxSaving: "₹100",
-      validTill: "2024-02-15",
-      terms: [
-        "Applicable on Dabur Red Paste only",
-        "Minimum 6 units required",
-        "Cannot be combined with other offers",
-      ],
-    },
-    {
-      id: 2,
-      category: "Hair Care",
-      expires: true,
-      discount: "25% OFF",
-      title: "Personal Care Combo",
-      desc: "Buy any 3 shampoos + Get 1 conditioner free",
-      minOrder: "₹850",
-      maxSaving: "₹285",
-      validTill: "2024-02-28",
-      terms: [
-        "Valid on premium brands only",
-        "Free conditioner of equal or lesser value",
-        "Limited stock available",
-      ],
-    },
-    {
-      id: 3,
-      category: "Electronics",
-      expires: true,
-      discount: "12% OFF",
-      title: "Electronics Store Special",
-      desc: "Extra 12% discount on orders above ₹5,000",
-      minOrder: "₹5,000",
-      maxSaving: "₹2,000",
-      validTill: "2024-01-31",
-      terms: [
-        "Applicable on your outlet category",
-        "Cannot exceed credit limit",
-        "Valid for limited time",
-      ],
-    },
-    {
-      id: 4,
-      category: "All Categories",
-      expires: true,
-      discount: "₹500 OFF",
-      title: "New Year Mega Sale",
-      desc: "Flat ₹500 off on orders above ₹10,000",
-      minOrder: "₹10,000",
-      maxSaving: "₹500",
-      validTill: "2024-01-25",
-      terms: [
-        "One time use per outlet",
-        "Valid on all product categories",
-        "Expires soon!",
-      ],
-    },
-  ];
+// ✅ Export the offers array so Home.jsx can use it
+export const offers = [
+  {
+    id: 1,
+    category: "Oral Care",
+    expires: true,
+    discount: "16.67% OFF",
+    title: "Dabur Bulk Purchase Offer",
+    desc: "Buy 6 bundles of ₹10 Dabur paste → Get 1 free",
+    minOrder: "₹600",
+    maxSaving: "₹100",
+    validTill: "2024-02-15",
+    terms: [
+      "Applicable on Dabur Red Paste only",
+      "Minimum 6 units required",
+      "Cannot be combined with other offers",
+    ],
+  },
+  {
+    id: 2,
+    category: "Hair Care",
+    expires: true,
+    discount: "25% OFF",
+    title: "Personal Care Combo",
+    desc: "Buy any 3 shampoos + Get 1 conditioner free",
+    minOrder: "₹850",
+    maxSaving: "₹285",
+    validTill: "2024-02-28",
+    terms: [
+      "Valid on premium brands only",
+      "Free conditioner of equal or lesser value",
+      "Limited stock available",
+    ],
+  },
+  {
+    id: 3,
+    category: "Electronics",
+    expires: true,
+    discount: "12% OFF",
+    title: "Electronics Store Special",
+    desc: "Extra 12% discount on orders above ₹5,000",
+    minOrder: "₹5,000",
+    maxSaving: "₹2,000",
+    validTill: "2024-01-31",
+    terms: [
+      "Applicable on your outlet category",
+      "Cannot exceed credit limit",
+      "Valid for limited time",
+    ],
+  },
+  {
+    id: 4,
+    category: "All Categories",
+    expires: true,
+    discount: "₹500 OFF",
+    title: "New Year Mega Sale",
+    desc: "Flat ₹500 off on orders above ₹10,000",
+    minOrder: "₹10,000",
+    maxSaving: "₹500",
+    validTill: "2024-01-25",
+    terms: [
+      "One time use per outlet",
+      "Valid on all product categories",
+      "Expires soon!",
+    ],
+  },
+];
 
+export default function Offers() {
   return (
     <div className="p-6">
       {/* Header */}

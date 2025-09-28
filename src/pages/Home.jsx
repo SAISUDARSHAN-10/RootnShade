@@ -1,4 +1,5 @@
-import { useState } from "react";
+// src/pages/home.jsx
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   Search,
@@ -9,9 +10,16 @@ import {
   ArrowRight,
 } from "lucide-react";
 
+import { offers } from "./offers";
+
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
+  const [offersCount, setOffersCount] = useState(0);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setOffersCount(offers.length);
+  }, []);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -57,59 +65,72 @@ export default function Home() {
       {/* Quick Links */}
       <section>
         <h2 className="font-semibold text-lg mb-3">Quick Links</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+          {/* ✅ Orders */}
           <Link to="/orders">
-            <div className="relative bg-white border rounded-lg shadow-sm p-4 h-32 flex flex-col justify-between hover:shadow-md transition">
+            <div className="relative bg-white border rounded-lg shadow-sm p-3 h-24 flex flex-col justify-between items-center hover:shadow-md transition text-center">
               <ArrowRight
-                size={18}
-                className="absolute top-3 right-3 text-gray-400"
+                size={16}
+                className="absolute top-2 right-2 text-gray-400"
               />
-              <div className="flex items-center gap-2 text-gray-700 font-medium">
+              <div className="flex flex-col items-center gap-1 text-gray-700 font-medium">
                 <Package size={20} />
                 Orders
               </div>
-              <p className="text-xl font-bold">12</p>
+              <div className="mt-1 bg-[#1F4E79] text-white text-base font-bold w-10 h-10 rounded-full flex items-center justify-center shadow-md">
+                12
+              </div>
             </div>
           </Link>
 
+          {/* ✅ Cart */}
           <Link to="/cart">
-            <div className="relative bg-white border rounded-lg shadow-sm p-4 h-32 flex flex-col justify-between hover:shadow-md transition">
+            <div className="relative bg-white border rounded-lg shadow-sm p-3 h-24 flex flex-col justify-between items-center hover:shadow-md transition text-center">
               <ArrowRight
-                size={18}
-                className="absolute top-3 right-3 text-gray-400"
+                size={16}
+                className="absolute top-2 right-2 text-gray-400"
               />
-              <div className="flex items-center gap-2 text-gray-700 font-medium">
+              <div className="flex flex-col items-center gap-1 text-gray-700 font-medium">
                 <ShoppingCart size={20} />
                 Cart
               </div>
-              <p className="text-xl font-bold">5</p>
+              <div className="mt-1 bg-[#1F4E79] text-white text-base font-bold w-10 h-10 rounded-full flex items-center justify-center shadow-md">
+                5
+              </div>
             </div>
           </Link>
 
+          {/* ✅ Offers */}
           <Link to="/offers">
-            <div className="relative bg-white border rounded-lg shadow-sm p-4 h-32 flex flex-col justify-between hover:shadow-md transition">
+            <div className="relative bg-white border rounded-lg shadow-sm p-3 h-24 flex flex-col justify-between items-center hover:shadow-md transition text-center">
               <ArrowRight
-                size={18}
-                className="absolute top-3 right-3 text-gray-400"
+                size={16}
+                className="absolute top-2 right-2 text-gray-400"
               />
-              <div className="flex items-center gap-2 text-gray-700 font-medium">
+              <div className="flex flex-col items-center gap-1 text-gray-700 font-medium">
                 <Gift size={20} />
                 Offers
               </div>
+              <div className="mt-1 bg-[#1F4E79] text-white text-base font-bold w-10 h-10 rounded-full flex items-center justify-center shadow-md">
+                {offersCount}
+              </div>
             </div>
           </Link>
 
+          {/* ✅ Credit Details */}
           <Link to="/credit-details">
-            <div className="relative bg-white border rounded-lg shadow-sm p-4 h-32 flex flex-col justify-between hover:shadow-md transition">
+            <div className="relative bg-white border rounded-lg shadow-sm p-3 h-24 flex flex-col justify-between items-center hover:shadow-md transition text-center">
               <ArrowRight
-                size={18}
-                className="absolute top-3 right-3 text-gray-400"
+                size={16}
+                className="absolute top-2 right-2 text-gray-400"
               />
-              <div className="flex items-center gap-2 text-gray-700 font-medium">
+              <div className="flex flex-col items-center gap-1 text-gray-700 font-medium">
                 <CreditCard size={20} />
                 Credit Details
               </div>
-              <p className="text-xl font-bold">2</p>
+              <div className="mt-1 bg-[#1F4E79] text-white text-base font-bold w-10 h-10 rounded-full flex items-center justify-center shadow-md">
+                2
+              </div>
             </div>
           </Link>
         </div>

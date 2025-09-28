@@ -73,17 +73,23 @@ export default function Reorder() {
 
       {/* Top summary cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-4 flex justify-between items-center">
           <p className="text-gray-500 text-sm">Suggested Items</p>
-          <p className="text-2xl font-semibold">{totalItems}</p>
+          <span className="bg-blue-600 text-white text-sm px-3 py-1 rounded-full font-semibold">
+            {totalItems}
+          </span>
         </div>
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-4 flex justify-between items-center">
           <p className="text-gray-500 text-sm">Low Stock Items</p>
-          <p className="text-2xl font-semibold">{lowStock}</p>
+          <span className="bg-blue-600 text-white text-sm px-3 py-1 rounded-full font-semibold">
+            {lowStock}
+          </span>
         </div>
-        <div className="bg-white rounded-lg shadow-sm border p-4">
+        <div className="bg-white rounded-lg shadow-sm border p-4 flex justify-between items-center">
           <p className="text-gray-500 text-sm">Selected Items</p>
-          <p className="text-2xl font-semibold">{selected.length}</p>
+          <span className="bg-blue-600 text-white text-sm px-3 py-1 rounded-full font-semibold">
+            {selected.length}
+          </span>
         </div>
       </div>
 
@@ -127,7 +133,7 @@ export default function Reorder() {
                     Last: {item.lastOrdered}
                   </div>
                   <span>{item.frequency}</span>
-                  <span className="text-orange-600 font-medium">
+                  <span className="bg-blue-600 text-white text-xs px-2 py-0.5 rounded-full font-medium">
                     Stock: {item.stock}
                   </span>
                 </div>
@@ -138,11 +144,13 @@ export default function Reorder() {
             <div className="text-right">
               <p className="text-sm text-gray-500">
                 Suggested:{" "}
-                <span className="font-semibold text-gray-700">
+                <span className="bg-blue-600 text-white text-xs px-2 py-0.5 rounded-full font-medium">
                   {item.suggested}
                 </span>
               </p>
-              <p className="font-semibold">₹{item.suggested * item.price}</p>
+              <p className="font-semibold text-blue-600">
+                ₹{item.suggested * item.price}
+              </p>
               <p className="text-xs text-gray-500">@₹{item.price}/unit</p>
             </div>
           </div>
@@ -156,17 +164,17 @@ export default function Reorder() {
           <li>
             <span className="inline-block w-2 h-2 rounded-full bg-green-500 mr-2"></span>
             Your Dabur Red Paste orders show a weekly pattern. Consider ordering
-            24 units to last 2 weeks.
+            <span className="bg-blue-600 text-white text-xs px-2 py-0.5 rounded-full ml-1">24</span> units to last 2 weeks.
           </li>
           <li>
             <span className="inline-block w-2 h-2 rounded-full bg-orange-500 mr-2"></span>
             Head & Shoulders is out of stock. Based on past sales, you typically
-            need 6 units monthly.
+            need <span className="bg-blue-600 text-white text-xs px-2 py-0.5 rounded-full ml-1">6</span> units monthly.
           </li>
           <li>
             <span className="inline-block w-2 h-2 rounded-full bg-blue-500 mr-2"></span>
-            Personal care items show increased demand. Consider stocking 20%
-            more for the upcoming season.
+            Personal care items show increased demand. Consider stocking
+            <span className="bg-blue-600 text-white text-xs px-2 py-0.5 rounded-full ml-1">20%</span> more for the upcoming season.
           </li>
         </ul>
       </div>

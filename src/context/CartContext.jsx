@@ -3,45 +3,49 @@ import { createContext, useContext, useState } from "react";
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
-  const [cartItems, setCartItems] = useState([]);
+  const [cart, setCart] = useState([]);
 
-  const addToCart = (product) => {
-    setCartItems((prev) => {
+  // ✅ Add or update cart item
+  const addOrUpdateItem = (product, type, qty) => {
+    if (!qty || qty <= 0) return;
+
+    setCart((prev) => {
       const existing = prev.find((item) => item.id === product.id);
       if (existing) {
+        // Update quantity for that unit type
         return prev.map((item) =>
-          item.id === product.id ? { ...item, qty: item.qty + 1 } : item
+          item.id === product.id
+            ? {
+                ...item,
+                qtyKg: type === "single" ? qty : item.qtyKg,
+                qtyCase: type === "case" ? qty : item.qtyCase,
+              }
+            : item
         );
       }
-      return [...prev, { ...product, qty: 1 }];
+      // Add new item
+      return [
+        ...prev,
+        {
+          ...product,
+          qtyKg: type === "single" ? qty : 0,
+          qtyCase: type === "case" ? qty : 0,
+        },
+      ];
     });
   };
 
-  const incrementQty = (id) => {
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, qty: item.qty + 1 } : item
-      )
-    );
+  // ✅ Remove from cart
+  const removeItem = (productId) => {
+    setCart((prev) => prev.filter((item) => item.id !== productId));
   };
 
-  const decrementQty = (id) => {
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.id === id && item.qty > 1
-          ? { ...item, qty: item.qty - 1 }
-          : item
-      )
-    );
-  };
-
-  const removeItem = (id) => {
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
-  };
+  // ✅ Clear entire cart
+  const clearCart = () => setCart([]);
 
   return (
     <CartContext.Provider
-      value={{ cartItems, addToCart, incrementQty, decrementQty, removeItem }}
+      value={{ cart, addOrUpdateItem, removeItem, clearCart }}
     >
       {children}
     </CartContext.Provider>
