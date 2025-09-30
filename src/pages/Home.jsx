@@ -1,4 +1,4 @@
-// src/pages/home.jsx
+// src/pages/Home.jsx
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
@@ -10,7 +10,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-import { offers } from "./offers";
+import { offers } from "./Offers";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");

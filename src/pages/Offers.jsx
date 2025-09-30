@@ -1,4 +1,4 @@
-// src/pages/offers.jsx
+// src/pages/Offers.jsx
 import { Tag, Calendar, ShoppingCart, Info, Gift } from "lucide-react";
 
 // ✅ Export the offers array so Home.jsx can use it
